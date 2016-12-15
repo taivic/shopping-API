@@ -18,7 +18,7 @@ var Storage = {
     }
     return item || "error";
   },
-  put: function(id, name) {
+  update: function(id, name) {
     var item;
     for (var i = 0; i < this.items.length; i++) {
       if (id == this.items[i].id) {
@@ -67,7 +67,7 @@ app.delete('/items/:id', jsonParser, function(request, response) {
 });
 
 app.put('/items/:id', jsonParser, function(request, response) {
-    var item = storage.put(request.params.id, request.body.name);
+    var item = storage.update(request.params.id, request.body.name);
     if (item === "error") {
       return response.sendStatus(404);
     }
